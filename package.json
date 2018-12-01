@@ -1,0 +1,28 @@
+{
+  "name": "SpotifySlackHelper",
+  "version": "1.0.0",
+  "description": "When someone shares an Apple Music link on Slack, respond with the corresponding link for Spotify",
+  "main": "index.js",
+  "repository": "https://github.com/adig/SpotifySlackHelper",
+  "author": "Adrian Geană",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@slack/client": "^4.8.0",
+    "@slack/events-api": "^2.1.1",
+    "console-stamp": "^0.2.7",
+    "got": "^9.3.2",
+    "metascraper": "^4.7.0",
+    "metascraper-description": "^4.7.0",
+    "metascraper-image": "^4.7.0",
+    "metascraper-logo-favicon": "^4.3.5",
+    "metascraper-publisher": "^4.7.0",
+    "metascraper-title": "^4.7.0",
+    "metascraper-url": "^4.7.0",
+    "node-spotify-api": "^1.0.7",
+    "searchitunes": "^2.4.0"
+  }
+}
