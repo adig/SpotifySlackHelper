@@ -5,14 +5,17 @@ Simple nodejs Slack app that listens for links to Apple Music albums, artists or
 ## How it works
 
 The service listens to the `link_shared` [Slack WebAPI event](https://api.slack.com/events/link_shared) that matches the configured App Unfurl Domains, in this case `itunes.apple.com`. 
+
 ⚠️ `links:read` Slack App Permission Scope is required for this. 
 
 Using the id from the shared URL it fetches information about the track/album/artist using the iTunes API (see [https://github.com/fvdm/nodejs-searchitunes](https://github.com/fvdm/nodejs-searchitunes))
 
 Using the metadata fetched from iTunes it queries the Spotify API for the equivalent item and shares it in the same channel. See [https://github.com/thelinmichael/spotify-web-api-node](https://github.com/thelinmichael/spotify-web-api-node)
+
 ⚠️ `chat:write:bot` Slack App Permission Scope is required for this. 
 
 **Note**: When using `link_shared` and **App Unfurl Domains** the classic Slack unfurl isn't displayed anymore. This service simulates the classic unfurl using the [Metascraper](http://metascraper.js.org/) library. 
+
 ⚠️ `links:write` Slack App Permission Scope is required for this to work. 
 
 ## Setup
