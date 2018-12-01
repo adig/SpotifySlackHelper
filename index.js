@@ -1,5 +1,3 @@
-require('console-stamp')(console);
-
 const { SLACK_SIGNIN_SECRET, SLACK_ACCESS_TOKEN } = process.env;
 
 const { WebClient } = require('@slack/client');
@@ -19,7 +17,7 @@ slackEvents.on('link_shared', event => {
 	
 	unfurl(links)
 	.then(metadata => {
-		console.log(metadata);
+
 		let unfurls = {};
 		
 		links.forEach((link, i) => {
@@ -36,7 +34,6 @@ slackEvents.on('link_shared', event => {
 		return processURLs(links);
 	})
 	.then(responseLinks => {
-		console.log('corresponding links', responseLinks);
 		return Promise.all(
 			responseLinks.map(
 				link => slackWebClient.chat.postMessage({
