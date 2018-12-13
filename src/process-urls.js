@@ -11,7 +11,7 @@ const spotify = new Spotify({
 
 const ALBUM_REGEX = /(.*)\/album\/(.*)\/(.[0-9]+)/;
 const ARTIST_REGEX = /(.*)\/artist\/(.*)\/(.[0-9]+)/;
-const REPLACE_ALBUM_NAME_REGEX = /EP|SINGLE/g;
+const REPLACE_ALBUM_NAME_REGEX = /ep|single/ig;
 const REPLACE_NON_ALPHANUMERIC_CHARTS = /[\W_]+/g;
 
 function getAlbumURL(query) {
