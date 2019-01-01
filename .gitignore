@@ -86,4 +86,6 @@ typings/
 #DynamoDB Local files
 .dynamodb/
 
+startlocal.sh
+
 # End of https://www.gitignore.io/api/node
