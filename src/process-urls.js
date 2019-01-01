@@ -18,15 +18,15 @@ const REPLACE_NON_ALPHANUMERIC_CHARTS = /[\W_]+/g;
 const SPOTIFY_SEARCH_LIMIT = 50;
 
 function getAlbumURL(albumName, artistName, market) {
-
+	albumName = albumName.replace(REPLACE_ALBUM_NAME_REGEX, '').replace(REPLACE_NON_ALPHANUMERIC_CHARTS, ' ');
 	return searchSpotify(
 			'album',
-			albumName.replace(REPLACE_ALBUM_NAME_REGEX, ''),
+			albumName,
 			market
 		)
 		.then(
 			response =>  response.albums.items.filter(item => (
-									item.name.toLowerCase() == albumName.toLowerCase() &&
+									item.name.toLowerCase() == albumName.trim().toLowerCase() &&
 									((!!artistName && item.artists[0].name == artistName) || !artistName)
 								)
 						)
@@ -55,7 +55,7 @@ function getTrackURL(trackName, artistName, market) {
 		.then(
 			response => response.tracks.items
 						.filter(item => (
-									item.name.toLowerCase() == trackName.toLowerCase() &&
+									item.name.toLowerCase() == trackName.trim().toLowerCase() &&
 									((!!artistName && item.artists[0].name == artistName) || !artistName)
 								)
 						)
