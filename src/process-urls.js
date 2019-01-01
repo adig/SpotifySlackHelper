@@ -115,7 +115,7 @@ function processURL(linkURL) {
 
 	} else if(ARTIST_REGEX.test(path)) {
 
-		let [ , market, artistName, artistId] = ALBUM_REGEX.exec(path);
+		let [ , market, artistName, artistId] = ARTIST_REGEX.exec(path);
 		artistName = artistName.replace(REPLACE_NON_ALPHANUMERIC_CHARTS, ' ');
 
 		return searchiTunesFallback({id: artistId}, { artistName })
