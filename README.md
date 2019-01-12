@@ -33,5 +33,27 @@ Using the metadata fetched from iTunes it queries the Spotify API for the equiva
     * `SLACK_ACCESS_TOKEN` - OAuth Access Token
     * `SPOTIFY_CLIENT_ID`
     * `SPOTIFY_CLIENT_SECRET`
+    * `TEST_ACCESS_TOKEN` - access token used to authorize requests to test endpoints (see below)
 5. Start the app with `yarn start`
 6. Add the Request URL in the Events Subscription page for your Slack App. The url will be `<EXTERNAL_URL>/client/events`. You can use [ngrok](https://ngrok.com) for local development
+
+## Testing
+The service provides some urls to test the url processing as well as testing iTunes and Spotify querying without the Slack integration. Parameters ar passed as query parameters.
+
+### `/test`
+* **`url`** - AppleMusic url
+* **`token`** - access token, must be the same value as `TEST_ACCESS_TOKEN` env variable for the request to be accepted
+
+### `/test-itunes`
+* **`id`** - id of item to query for
+* **`token`** - access token, must be the same value as `TEST_ACCESS_TOKEN` env variable for the request to be accepted
+
+### `test-spotify`
+* **`query`** - value to search for as item name
+* **`type`** - what items to search for, values can be: `album`, `artist`, `track`
+* **`market`** - country code for market where to search for items. Defaults to `us`
+* **`token`** - access token, must be the same value as `TEST_ACCESS_TOKEN` env variable for the request to be accepted
+
+
+
+    
