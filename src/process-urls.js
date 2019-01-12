@@ -27,7 +27,10 @@ function getAlbumURL(albumName, artistName, market) {
 		.then(
 			response =>  response.albums.items.filter(item => (
 									item.name.toLowerCase() == albumName.trim().toLowerCase() &&
-									((!!artistName && item.artists[0].name == artistName) || !artistName)
+									(
+										(!!artistName && item.artists.some(artist => artistName.includes(artist.name))) ||
+										!artistName
+									)
 								)
 						)
 						.map(item => item.external_urls.spotify)[0]
