@@ -17,6 +17,14 @@ const REPLACE_ALBUM_NAME_REGEX = /ep|single/ig;
 const REPLACE_DELIIMITER_CHARTS = /(-_)/g;
 const SPOTIFY_SEARCH_LIMIT = 50;
 
+
+function itemMatchesArtist(item, artistName) {
+	return  (
+		(!!artistName && item.artists.some(artist => artistName.includes(artist.name))) ||
+		!artistName
+	);
+}
+
 function getAlbumURL(albumName, artistName, market) {
 	albumName = albumName.replace(REPLACE_ALBUM_NAME_REGEX, '').replace(REPLACE_DELIIMITER_CHARTS, ' ');
 	return searchSpotify(
@@ -27,10 +35,7 @@ function getAlbumURL(albumName, artistName, market) {
 		.then(
 			response =>  response.albums.items.filter(item => (
 									item.name.toLowerCase() == albumName.trim().toLowerCase() &&
-									(
-										(!!artistName && item.artists.some(artist => artistName.includes(artist.name))) ||
-										!artistName
-									)
+									itemMatchesArtist(item, artistName)
 								)
 						)
 						.map(item => item.external_urls.spotify)[0]
@@ -59,7 +64,7 @@ function getTrackURL(trackName, artistName, market) {
 			response => response.tracks.items
 						.filter(item => (
 									item.name.toLowerCase() == trackName.trim().toLowerCase() &&
-									((!!artistName && item.artists[0].name == artistName) || !artistName)
+									itemMatchesArtist(item, artistName)
 								)
 						)
 						.map(item => item.external_urls.spotify)[0]
