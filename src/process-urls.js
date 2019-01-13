@@ -14,11 +14,11 @@ const SPOTIFY_SEARCH_URI = "https://api.spotify.com/v1/search";
 const ALBUM_REGEX = /\/(.*)\/album\/(.*)\/(.[0-9]+)/;
 const ARTIST_REGEX = /\/(.*)\/artist\/(.*)\/(.[0-9]+)/;
 const REPLACE_ALBUM_NAME_REGEX = /ep|single/ig;
-const REPLACE_NON_ALPHANUMERIC_CHARTS = /[\W_]+/g;
+const REPLACE_DELIIMITER_CHARTS = /(-_)/g;
 const SPOTIFY_SEARCH_LIMIT = 50;
 
 function getAlbumURL(albumName, artistName, market) {
-	albumName = albumName.replace(REPLACE_ALBUM_NAME_REGEX, '').replace(REPLACE_NON_ALPHANUMERIC_CHARTS, ' ');
+	albumName = albumName.replace(REPLACE_ALBUM_NAME_REGEX, '').replace(REPLACE_DELIIMITER_CHARTS, ' ');
 	return searchSpotify(
 			'album',
 			albumName,
@@ -97,7 +97,7 @@ function processURL(linkURL) {
 
 		const [ , market, trackName, albumId] = ALBUM_REGEX.exec(path);
 		return searchiTunesFallback({id: query.i}, {
-				trackName: trackName.replace(REPLACE_NON_ALPHANUMERIC_CHARTS, ' ')
+				trackName: trackName.replace(REPLACE_DELIIMITER_CHARTS, ' ')
 			})
 			.then(response => {
 				const { trackName, artistName } = response;
@@ -109,7 +109,7 @@ function processURL(linkURL) {
 		const [ , market, collectionName, albumId] = ALBUM_REGEX.exec(path);
 
 		return searchiTunesFallback({id: albumId}, {
-				collectionName: collectionName.replace(REPLACE_NON_ALPHANUMERIC_CHARTS, ' ')
+				collectionName: collectionName.replace(REPLACE_DELIIMITER_CHARTS, ' ')
 			})
 			.then(response => {
 				const { collectionName, artistName } = response;
@@ -119,7 +119,7 @@ function processURL(linkURL) {
 	} else if(ARTIST_REGEX.test(path)) {
 
 		let [ , market, artistName, artistId] = ARTIST_REGEX.exec(path);
-		artistName = artistName.replace(REPLACE_NON_ALPHANUMERIC_CHARTS, ' ');
+		artistName = artistName.replace(REPLACE_DELIIMITER_CHARTS, ' ');
 
 		return searchiTunesFallback({id: artistId}, { artistName })
 			.then(response => getArtistURL(response.artistName, market));
