@@ -15,7 +15,7 @@
     "@slack/events-api": "^2.1.1",
     "express": "^4.16.4",
     "got": "^9.3.2",
-    "metascraper": "^4.7.0",
+    "metascraper": "^5.2.0",
     "metascraper-description": "^4.7.0",
     "metascraper-image": "^4.7.0",
     "metascraper-logo-favicon": "^4.3.5",
