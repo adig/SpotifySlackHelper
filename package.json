@@ -8,7 +8,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@slack/client": "^4.8.0",
@@ -23,6 +25,8 @@
     "metascraper-title": "^4.7.0",
     "metascraper-url": "^4.7.0",
     "node-spotify-api": "^1.0.7",
-    "searchitunes": "^2.4.0"
-  }
+    "searchitunes": "^2.4.0",
+    "snyk": "^1.189.0"
+  },
+  "snyk": true
 }
