@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@slack/client": "^5.0.1",
-    "@slack/events-api": "^2.2.0",
+    "@slack/events-api": "^2.3.3",
     "express": "^4.16.4",
     "got": "^9.3.2",
     "metascraper": "^5.2.0",
