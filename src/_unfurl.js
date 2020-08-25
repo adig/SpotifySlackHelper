@@ -9,7 +9,7 @@ const metascraper = require('metascraper')([
 
 const got = require('got');
 
-module.exports = function unfurl(urls) {
+module.exports = (urls) => {
 
 	return Promise.all(
 		urls.map(url => got(url)
@@ -19,7 +19,8 @@ module.exports = function unfurl(urls) {
 					url: response.url
 				});
 			})
-			.then(metadata => ({
+			.then(metadata => {
+				return ({
 				author_name: metadata.publisher,
 				author_icon: metadata.logo,
 				title: metadata.title,
@@ -27,8 +28,7 @@ module.exports = function unfurl(urls) {
 				text: metadata.description,
 				thumb_url: metadata.image
 				})
-			)
+			})
 		)
 	);
-
 };

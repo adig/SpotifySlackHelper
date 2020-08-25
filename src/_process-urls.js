@@ -74,9 +74,10 @@ function getTrackURL(trackName, artistName, market) {
 function searchiTunesFallback(query, fallbackResponse) {
 	return new Promise((resolve, reject) => {
 		searchitunes(query)
-		.then(result => resolve(result))
+		.then(result => {
+			return resolve(result);
+		})
 		.catch(err => {
-			console.error(`Search itunes for query ${query} failed with error ${err}`);
 			resolve(fallbackResponse);
 		});
 	});
@@ -127,7 +128,9 @@ function processURL(linkURL) {
 		artistName = artistName.replace(REPLACE_DELIIMITER_CHARTS, ' ');
 
 		return searchiTunesFallback({id: artistId}, { artistName })
-			.then(response => getArtistURL(response.artistName, market));
+			.then(({artistName}) => {
+				return getArtistURL(artistName, market);
+			});
 	}
 
 	return null;

@@ -89,3 +89,5 @@ typings/
 startlocal.sh
 
 # End of https://www.gitignore.io/api/node
+
+.vercel
