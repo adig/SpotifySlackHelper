@@ -18,9 +18,8 @@ slackEvents.on('link_shared', (event, headers, respond) => {
 	}
 
 	const links = event.links.map(link => link.url);
-	.then(response => {
-		return processURLs(links);
-	})
+	
+	processURLs(links)
 	.then(responseLinks => {
 		return Promise.all(
 			responseLinks.map(link => {
