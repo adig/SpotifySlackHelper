@@ -10,7 +10,6 @@ const slackEvents = createEventAdapter(SLACK_SIGNIN_SECRET, {
 const slackWebClient = new WebClient(SLACK_ACCESS_TOKEN);
 
 const { processURLs } = require('../../src/_process-urls');
-const unfurl = require('../../src/_unfurl');
 
 slackEvents.on('link_shared', (event, headers, respond) => {
 
@@ -19,20 +18,6 @@ slackEvents.on('link_shared', (event, headers, respond) => {
 	}
 
 	const links = event.links.map(link => link.url);
-	unfurl(links)
-	.then(metadata => {
-		let unfurls = {};
-
-		links.forEach((link, i) => {
-			unfurls[link] = metadata[i];
-		});
-
-		return slackWebClient.chat.unfurl({
-			channel: event.channel,
-			ts: event.message_ts,
-			unfurls
-		});
-	})
 	.then(response => {
 		return processURLs(links);
 	})
