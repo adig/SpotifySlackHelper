@@ -14,7 +14,7 @@
     "@slack/client": "^5.0.1",
     "@slack/events-api": "^2.2.0",
     "express": "^4.16.4",
-    "got": "^9.3.2",
+    "got": "^11.8.5",
     "metascraper": "^5.2.0",
     "metascraper-description": "^4.7.0",
     "metascraper-image": "^4.7.0",
